@@ -37,6 +37,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # Externals
+
+
+
+
+    # Interals 
+    'poll',
+    'account'
 ]
 
 MIDDLEWARE = [
@@ -123,3 +131,15 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Rest related
+
+# ckeditor related
+
+# Image related
+
+
+# Auth related
+
+
+AUTH_USER_MODEL = 'account.MyUser'
