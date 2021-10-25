@@ -45,7 +45,9 @@ INSTALLED_APPS = [
     # Interals
     'poll',
     'account',
+    'team',
     'api',
+    'event',
 ]
 
 MIDDLEWARE = [
@@ -56,6 +58,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+     # Above are django standard middlewares
+
+     # Now we add here our custom middleware
+     'poll.middleware.timezone_middleware.TimezoneMiddleware'
 ]
 
 ROOT_URLCONF = 'koji.urls'
@@ -63,7 +69,7 @@ ROOT_URLCONF = 'koji.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
