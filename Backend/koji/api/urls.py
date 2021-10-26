@@ -1,4 +1,4 @@
-from .views import UserList, UserDetail, UserDelete,UserCreate,UserUpdate
+from .views.UserViews import UserList, UserDetail, UserDelete,UserCreate,UserUpdate
 from django.urls import path
 
 app_name = 'api'

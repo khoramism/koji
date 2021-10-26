@@ -1,6 +1,6 @@
 from account.models import UserProfile
 from rest_framework.generics import DestroyAPIView, ListCreateAPIView, RetrieveAPIView, DestroyAPIView, CreateAPIView , RetrieveUpdateAPIView
-from .serializers import UserSerializer
+from ..serializers.UserSerializers import UserSerializer
 
 
 class UserList(ListCreateAPIView):
