@@ -2,7 +2,6 @@ import uuid
 from django.db import models
 
 
-
 class Event(models.Model):
     STATUS = (
         ('ended', 'برگزار شده'),
@@ -19,7 +18,7 @@ class Event(models.Model):
     creator = models.ForeignKey(
         "account.UserProfile", on_delete=models.CASCADE, related_name='event_creator')
 
-    users = models.ManyToManyField("account.UserProfile",blank=True)
+    users = models.ManyToManyField("account.UserProfile", blank=True)
 
     teams = models.ManyToManyField("team.Team")
 

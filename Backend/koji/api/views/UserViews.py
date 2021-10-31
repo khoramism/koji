@@ -1,11 +1,11 @@
 from account.models import UserProfile
-from rest_framework.generics import DestroyAPIView, ListCreateAPIView, RetrieveAPIView, DestroyAPIView, CreateAPIView , RetrieveUpdateAPIView
+from rest_framework.generics import DestroyAPIView, ListAPIView, RetrieveAPIView, DestroyAPIView, CreateAPIView , RetrieveUpdateAPIView
 from ..serializers.UserSerializers import UserSerializer
 
 
-class UserList(ListCreateAPIView):
+class UserList(ListAPIView):
     """
-    API endpoint that allows users to be viewed or edited.
+    API endpoint that allows users to be viewed.
     """
     queryset = UserProfile.objects.all()
     serializer_class = UserSerializer
