@@ -1,4 +1,3 @@
-import uuid
 from django.db import models
 
 
@@ -21,8 +20,5 @@ class Event(models.Model):
     users = models.ManyToManyField("account.UserProfile", blank=True)
 
     teams = models.ManyToManyField("team.Team")
-
-    invite_id = models.UUIDField(
-        unique=True, default=uuid.uuid4, editable=True)
 
     created = models.DateTimeField(auto_now_add=True)
