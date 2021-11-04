@@ -21,17 +21,16 @@ env = environ.Env()
 # reading .env file
 environ.Env.read_env()
 
-
+import os 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = int(os.environ.get("DEBUG", default=0))
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
 
 # Application definition
 
@@ -107,8 +106,8 @@ DATABASES = {
         "NAME" : env("DATABASE_NAME"),
         "USER" : env("DATABASE_USER"),
         "PASSWORD" : env("DATABASE_PASS"),
-        'HOST': 'db',
-        'PORT': 5432,
+        'HOST': env('DATABASE_HOST'),
+        'PORT': env('DATABASE_PORT'),
     }
 }
 
