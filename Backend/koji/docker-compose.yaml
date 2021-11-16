@@ -6,20 +6,20 @@ services:
     volumes:
     - ./data/postgres_db:/var/lib/postgresql/data
     environment:
-    - DB_NAME = "${DATABASE_NAME}"
-    - DB_USER = "${DATABASE_USER}"
-    - DB_PW = "${DATABASE_PASS}"
+    - DB_NAME="${DATABASE_NAME}"
+    - DB_USER="${DATABASE_USER}"
+    - DB_PW="${DATABASE_PASS}"
+    env_file:
+      - koji/.env
   
   web:
-    build:
+    build: .
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
       - ./app:/usr/src/app/
     ports:
-      - : '8000:8000'
+      - '8000:8000'
     env_file:
       - koji/.env
     depends_on:
-      -db
-volumes:
-  postgres_data:
+      - db
