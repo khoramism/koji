@@ -12,5 +12,10 @@ WORKDIR /usr/src/app/
 RUN pip install --upgrade pip
 COPY ./requirements.txt .
 RUN pip install -r requirements.txt
+RUN pip install gunicorn
 COPY . /usr/src/app/
-CMD python manage.py runserver 0.0.0.0:8000
+CMD while ! python manage.py sqlflush > /dev/null 2>&1 ; do sleep 1 ; done &&\
+	python manage.py makemigrations --noinput && \
+	python manage.py migrate --noinput && \ 
+	python manage.py collectstatic --noinput && \
+	gunicorn --chdir /usr/src/app/ --bind :8000 koji.wsgi:application
