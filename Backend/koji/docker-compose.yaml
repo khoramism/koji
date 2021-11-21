@@ -4,6 +4,9 @@ services:
   db:
     image: postgres:13.0-alpine
     restart: always
+    networks:
+        - koji_db_network
+        - koji_web_network
     volumes:
     - ./data/postgres_db:/var/lib/postgresql/data
     env_file:
@@ -12,9 +15,28 @@ services:
   web:
     build: .
     restart: always
+    volumes:
+        - koji_static_volume:/usr/src/app/static
+    networks:
+        - koji_web_network
+        - koji_db_network
+       
     ports:
       - '8000:8000'
     env_file:
       - koji/web.env
     depends_on:
       - db
+
+
+volumes:
+    koji_static_volume:
+        external: true
+
+
+networks:
+    koji_web_network:
+        external: true
+
+    koji_db_network:
+        external: true

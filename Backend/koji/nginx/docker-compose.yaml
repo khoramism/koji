@@ -1,0 +1,22 @@
+version: '3.6'
+
+services: 
+    nginx:
+        container_name: nginx
+        build:
+            context: .
+        ports: 
+            - "80:80"
+        restart: always
+        networks:
+            - koji_web_network
+        volumes:
+            - koji_static_volume:/var/koji/static
+
+volumes:
+    koji_static_volume:
+        external: true    
+
+networks:
+    koji_web_network:
+        external: true
