@@ -23,7 +23,25 @@ class TeamCreateSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Team
-        fields = "__all__"
+        fields = ("name", "bio")
+
+    def create(self, validated_data):
+        creatorUser = self.context["request"].user
+        teamUsers = self.context["request"].data.get("users")
+        if not teamUsers:
+            teamUsers = [creatorUser.pk]
+        elif creatorUser.pk not in teamUsers:
+            teamUsers.append(creatorUser.pk)
+
+        team = Team(
+            creator=creatorUser,
+            name=validated_data["name"],
+            bio=validated_data["bio"]
+        )
+        team.save()
+        team.users.set(teamUsers)
+        team.save()
+        return team
 
 
 class TeamEventsSerializer(serializers.ModelSerializer):

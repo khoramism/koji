@@ -1,6 +1,7 @@
 from account.models import UserProfile
-from rest_framework.generics import DestroyAPIView, ListAPIView, RetrieveAPIView, DestroyAPIView, CreateAPIView , RetrieveUpdateAPIView
-from ..serializers.UserSerializers import UserSerializer
+from rest_framework.generics import DestroyAPIView, ListAPIView, RetrieveAPIView, DestroyAPIView, CreateAPIView, RetrieveUpdateAPIView
+from rest_framework.permissions import AllowAny
+from ..serializers.UserSerializers import UserSerializer, UserCreateSerializer
 
 
 class UserList(ListAPIView):
@@ -40,8 +41,9 @@ class UserCreate(CreateAPIView):
     API endpoint that Create a user.
     """
     queryset = UserProfile.objects.all()
-    serializer_class = UserSerializer
+    serializer_class = UserCreateSerializer
     lookup_field = "email"
+    permission_classes = [AllowAny]
 
 
 class UserUpdate(RetrieveUpdateAPIView):
