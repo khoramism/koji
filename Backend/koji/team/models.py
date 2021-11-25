@@ -9,7 +9,7 @@ class Team(models.Model):
 
     name = models.CharField(max_length=50)
 
-    users = models.ManyToManyField('account.UserProfile')
+    users = models.ManyToManyField('account.UserProfile', related_name="teams")
 
     invite_id = models.UUIDField(
         unique=True, default=uuid.uuid4, editable=True)
