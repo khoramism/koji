@@ -1,0 +1,13 @@
+{
+  "disks": [
+    {
+      "name": "root-disk",
+      "mountTo": "/etc/"
+    },
+    {
+      "name": "var-disk",
+      "mountTo": "/var/"
+    }
+  ]
+}
+
