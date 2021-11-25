@@ -15,7 +15,7 @@ services:
   
   web:
     build: .
-    container_name: koji_web
+    container_name: kojiapi
     restart: always
     volumes:
         - koji_static_volume:/usr/src/app/static
