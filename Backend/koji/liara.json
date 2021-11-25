@@ -1,8 +1,10 @@
 {
+  "platform": "docker",
+  "port": 8000,
   "disks": [
     {
-      "name": "static",
-      "mountTo": "/usr/src/app/static/"
+      "name": "app-disk",
+      "mountTo": "/usr/src/app/"
     }
   ]
 }
